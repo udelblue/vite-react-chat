@@ -9,13 +9,7 @@ function Chat() {
     
     });
   
-    const handleChange = (e:any) => {
-      const { name, value } = e.target;
-      setFormData(prevData => ({
-        ...prevData,
-        [name]: value,
-      }));
-    };
+
   
     const handleSubmit = (e:any) => {
       e.preventDefault();
@@ -38,26 +32,30 @@ function Chat() {
     };
   
     return (
-        <div className='flex flex-col items-center p-7 rounded-2xl"'>
+        <div className='flex flex-col items-center p-7 rounded-2xl border-2 border-gray-300"'>
         <h1 className='text-3xl font-bold'>Chat</h1>
         <div className='grid h-full w-full justify-items-center overflow-hidden place-items-center p-6 py-8 sm:p-8 lg:p-12'>
+          
         {history.map((item, index) => (
-          <div key={index}>{item}</div>
+          
+          <div className="text-sm/6 font-medium text-gray-500"      key={index}>{item} <dl className="divide-y divide-gray-600"></dl></div>
+          
         ))}
       </div>
 
       <form onSubmit={handleSubmit}>
         
-          <label htmlFor="message">Message: </label>
+          <label  className='font-medium text-gray-900' htmlFor="message">Message: </label>
           <input
+            className='h-full py-2 px-4 border rounded-l-md'
             type="text"
             id="message"
             name="message"
-            value={formData.message}
-            onChange={handleChange}
+            defaultValue={formData.message}
+        
           />
         
-        <button className='ml-5 gap-x-2 rounded-lg'  type="submit">Submit</button>
+        <button className='ml-5  h-full py-2 px-4 bg-blue-500 text-white rounded-r-md'  type="submit">Submit</button>
       </form>
       </div>
     );
