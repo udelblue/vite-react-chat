@@ -35,13 +35,15 @@ function Chat() {
 
   return (
     <div className='flex flex-col items-center p-7 rounded-2xl border-2 border-gray-300"'>
-      <h1 className='text-3xl font-bold'>Chat</h1>
-      <div className='grid h-full w-full justify-items-center overflow-hidden place-items-center p-6 py-8 sm:p-8 lg:p-12'>
+      <h2 className='text-3xl font-bold'>Chat</h2>
+      <div className='grid h-full w-full justify-items-center overflow-hidden place-items-center p-2 '>
 
         {history.map((item, index) => (
           <div>
-            <div className="text-sm/6 font-medium text-gray-500" key={index}>{item}   <div className="flex-grow border-t border-gray-200"></div></div>
-
+            <div className="text-sm/6 font-medium text-gray-500" key={index}>{item}   </div>
+            {index !== history.length - 1 ? (
+              <div className="flex-grow border-t border-gray-200"></div>
+            ) : null}
           </div>
         ))}
       </div>
