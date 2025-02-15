@@ -1,30 +1,42 @@
-import {  useState } from 'react'
+import {  useState, useEffect } from 'react'
 
 function Chat() {
 
     const [history, setHistory] = useState<string[]>([]);
 
-    const [formData, setFormData] = useState({
+    const [form, setForm] = useState({
         message: ''
     
     });
   
+   
 
   
     const handleSubmit = (e:any) => {
       e.preventDefault();
-      
-        setFormData({message: ''});
+      const formData = new FormData(e.target);
+      const inputValue = formData.get('message');
+   
         
+      if (inputValue ) {
+ 
+        setForm({message: inputValue.toString()});
         setHistory(prevHistory => [
-            `User: ${formData.message}`,
-            ...prevHistory,
-        ]);
-        var botResponse = "I am a bot"; // This is where you would put your bot response
-        setHistory(prevHistory => [
-            `Bot: ${botResponse}`,
-            ...prevHistory,
-        ]);
+          `User: ${inputValue.toString()}`,
+          ...prevHistory,
+      ]);
+      var botResponse = "I am a bot"; // This is where you would put your bot response
+      setHistory(prevHistory => [
+          `Bot: ${botResponse}`,
+          ...prevHistory,
+      ]);
+
+
+      
+        }
+        
+
+
        
       console.log('Form Data:', formData);
 
@@ -50,7 +62,7 @@ function Chat() {
             type="text"
             id="message"
             name="message"
-            defaultValue={formData.message}
+            defaultValue={form.message}
         
           />
         
