@@ -13,7 +13,8 @@ function Chat() {
   
     const handleSubmit = (e:any) => {
       e.preventDefault();
-
+      
+        setFormData({message: ''});
         
         setHistory(prevHistory => [
             `User: ${formData.message}`,
@@ -24,9 +25,7 @@ function Chat() {
             `Bot: ${botResponse}`,
             ...prevHistory,
         ]);
-        setFormData({
-            message: '',
-        });
+       
       console.log('Form Data:', formData);
 
     };
